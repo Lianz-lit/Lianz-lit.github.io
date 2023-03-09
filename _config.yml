@@ -74,7 +74,7 @@ netease_comment: false
 
 # Sidebar settings
 sidebar: true # whether or not using Sidebar.
-sidebar-about-description: "日进有功 <br> React Team @ Meta"
+sidebar-about-description: "日进有功 <br> PhD @ ZJNU"
 #sidebar-avatar: https://github.com/Huxpro.png # use absolute URL, seeing it's used in both `/` and `/about/`
 sidebar-avatar: https://raw.githubusercontent.com/Lianz-lit/Lianz-lit.github.io/main/img/avatar-hux.jpg
 
