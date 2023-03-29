@@ -1,14 +1,15 @@
-title: "Array - Input"
-subtitle: "数组输入"
-layout: post
-author: "Lianz"
+---
+layout:       post
+title:        "Python-Array-Input"
+author:       "Lianz"
 header-style: text
-hidden: false
+catalog:      true
 tags:
+    - Array
+    - Python
+---
 
-  - 笔记
-  - 基础
-  - Python
+> XXXX
 
 ## 一维数组
 
