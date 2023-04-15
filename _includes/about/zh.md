@@ -9,4 +9,4 @@ Lianz，浙师大计算机学院直博生在读
 -2022-至今：[浙江师范大学][1] [计算机科学与技术学院][2]
 
 [1]: //www.zjnu.edu.cn/
-[2]://http://cs.zjnu.edu.cn/main.htm
+[2]://cs.zjnu.edu.cn/main.htm
