@@ -4,6 +4,9 @@ Lianz，浙师大计算机学院直博生在读
 ##### Experience
 
 
-- [XXXX][1] · 2023
+-2018-2022： [浙江师范大学][1] [数学与计算机科学学院][2]
 
-[1]: //lianz-lit.github.io/2023/03/09/template/
+-2022-至今：[浙江师范大学][1] [计算机科学与技术学院][2]
+
+[1]: //www.zjnu.edu.cn/
+[2]://cs.zjnu.edu.cn/main.htm
