@@ -4,6 +4,6 @@ Lianz, CST collge, ZJNU
 ##### Experience
 
 
-- [XXXX][1] · 2023
+- [College of Mathematics and Computer Sciencce,Zhejiang Normal Universityachelor][1] · 2018-2022
 
-[1]: //lianz-lit.github.io/2023/03/09/template/
+[1]: //zjnu.edu.cn
