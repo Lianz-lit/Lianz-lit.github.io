@@ -15,11 +15,11 @@ tags:
 
 
 
-# 数组
+# 1.数组
 
 ##### @20240605
 
-## 数组理论基础 
+## 1.1数组理论基础 
 
 **数组是存放在连续内存空间上的相同类型数据的集合。**
 
@@ -51,7 +51,7 @@ tags:
 
 
 
-## 二分查找
+## 1.2二分查找
 
 **问题描述**
 
@@ -153,7 +153,7 @@ class Solution:
 
 ##### @20240606
 
-## 移除元素
+## 1.3移除元素
 
 **问题描述**
 
@@ -183,8 +183,6 @@ class Solution:
         nums = nums[0:k]
         return len(nums)    
         
-        # 时间复杂度 O(Nlogn) 31ms，88.89%
-        # 空间复杂度 O(N) 16.64MB，15.66%
 ```
 
 **解析补充**
@@ -206,8 +204,6 @@ class Solution:
             i += 1
         return l
 
-      # 执行用时：41ms，27.67%
-      # 消耗内存：16.33MB，80.55%
 ```
 
 法二：双指针法（快慢指针法）。**通过一个快指针和慢指针在一个for循环下完成两个for循环的工作。**
@@ -234,8 +230,6 @@ class Solution:
             fast += 1
         return slow
       
-      # 执行用时：46ms，7.47%
-      # 消耗内存：16.39MB，52.86%
 ```
 
 法三：相向双指针法。通过左、右指针来调整数组元素。
@@ -262,9 +256,7 @@ class Solution:
                 left += 1
                 right -= 1
         return left
-      
-      # 时间复杂度 O(n)，41ms，27.67%
-			# 空间复杂度 O(1)，16.45MB，23.33%          
+              
 ```
 
 
@@ -275,6 +267,152 @@ class Solution:
 
 
 
+##### @20240616
+
+## 1.4有序数组的平方
+
+**问题描述**
+
+给你一个按 **非递减顺序** 排序的整数数组 `nums`，返回 **每个数字的平方** 组成的新数组，要求也按 **非递减顺序** 排序。
+
+#977.有序数组的平方：https://leetcode.cn/problems/squares-of-a-sorted-array/description/
+
+**解决思路**
+
+逐步解决问题：
+
+1. 将原来数组中的元素更新为该元素的平方
+2. 以非递减顺序输出（借助sort()方法）
+
+**Python代码**
+
+```python
+class Solution:  # 暴力排序
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        for i in range(len(nums)):
+            nums[i] = nums[i] ** 2  # nums[i] *= nums[i]
+        nums.sort()
+        return nums
+      
+```
+
+**解析补充**
+
+法一：（题目中的已知条件为原数组也是**非递减顺序**排序的。可以利用这一点采用**双指针法**。）
+
+数组其实是有序的， 只不过<u>负数平方之后可能成为最大数</u>了。
+
+- 那么数组平方的最大值就在数组的两端，不是最左边就是最右边，不可能是中间。
+
+- 此时可以考虑双指针法了，i指向起始位置，j指向终止位置。
+
+- 定义一个新数组result，和A数组一样的大小，让k指向result数组终止位置。
+
+  - 如果`A[i] * A[i] < A[j] * A[j]` 那么`result[k--] = A[j] * A[j];` 。
+
+  - 如果`A[i] * A[i] >= A[j] * A[j]` 那么`result[k--] = A[i] * A[i];` 。
+
+```python
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        l, r, i = 0, len(nums)-1, len(nums)-1
+        # float('inf')是单精度浮点数的最大值，正无穷，直接用res=[]则后面赋值时会越界
+        res = [float('inf')] * len(nums) # 需要提前定义列表，存放结果
+        while l <= r:
+            if nums[l] ** 2 < nums[r] ** 2: # 左右边界进行对比，找出最大值
+                res[i] = nums[r] ** 2
+                r -= 1 # 右指针往左移动
+            else:
+                res[i] = nums[l] ** 2
+                l += 1 # 左指针往右移动
+            i -= 1 # 存放结果的指针需要往前平移一位
+        return res
+      
+```
+
+法二：暴力排序法+列表推导法
+
+```python
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        return sorted(x*x for x in nums)
+        
+```
+
+
+
+==总结说明==
+
+仔细观察思考已知条件。
+
+
+
+##### @20240627
+
+## 长度最小的子数组
+
+**问题描述**
+
+给定一个含有 `n` 个正整数的数组和一个正整数 `target` **。**
+
+找出该数组中满足其总和大于等于 `target` 的长度最小的**子数组**[numsl, numsl+1, ..., numsr-1, numsr]` ，并返回其长度**。**如果不存在符合条件的子数组，返回 `0` 。
+
+#209.长度最小的子数组：https://leetcode.cn/problems/minimum-size-subarray-sum/description/
+
+**解决思路**
+
+一开始尝试暴力法，运行无误，提交时报错。
+
+```python
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        nums.sort()
+        ans = len(nums)
+        for i in range(len(nums)):
+            if sum(nums) < target:
+                return 0
+            n_num=nums[i:]
+            if sum(n_num) >= target and len(n_num) < ans:
+                ans = len(n_num)
+        return ans
+```
+
+发现没有仔细阅读题干，要求的是连续子数组，对原数组进行排序后，数组被打乱，导致错误。
+
+借鉴了其他人的暴力法，尝试提交发现超时。
+
+```python
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        l = len(nums)
+        min_len = float('inf')
+        
+        for i in range(l):
+            cur_sum = 0
+            for j in range(i, l):
+                cur_sum += nums[j]
+                if cur_sum >= target:
+                    min_len = min(min_len, j - i + 1)
+                    break
+        
+        return min_len if min_len != float('inf') else 0
+```
+
+改为使用滑窗法。
+
+**Python代码**
+
+```
+```
+
+
+
+**解析补充**
+
+
+
+==总结说明==
+
 ##### @Date
 
 ## Template
@@ -282,6 +420,8 @@ class Solution:
 **问题描述**
 
 
+
+#704.二分查找： https://leetcode.cn/problems/binary-search/description/
 
 **解决思路**
 
